@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/calculadora.css">
+    <title>Calculadora de Gasolina</title>
+</head>
+<body>
+    <div id="login">
+        <form class="card" id="login-form">
+            <div class="logo">
+                <img src="/img/carro.png" alt="Logo Carro">
+            </div>
+            <div class="card-header">
+                <h2>CALCULADORA DE VALOR DA GASOLINA</h2>
+            </div>
+            <div class="card-content">
+                <div class="card-content-area">
+                    <label for="mediakml">Média KM/L do Carro</label>
+                    <input type="number" id="mediakml" autocomplete="off" placeholder="X km/l (DIGITE APENAS NÚMERO)">
+                </div>
+                <div class="card-content-area">
+                    <label for="Distância">Distância percorrida no total da viagem</label>
+                    <input type="number" id="Distância" autocomplete="off" placeholder="X km (DIGITE APENAS NÚMERO)">
+                </div>
+                <div class="card-content-area">
+                    <label for="valorGasolina">Valor da Gasolina (R$)</label>
+                    <input type="number" id="valorGasolina" autocomplete="off" placeholder="R$ (DIGITE APENAS NÚMERO)">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="botao-calcular" id="btn-calcular">CALCULAR</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('btn-calcular').addEventListener('click', function() {
+            const mediakml = parseFloat(document.getElementById('mediakml').value);
+            const distancia = parseFloat(document.getElementById('Distância').value);
+            const valorGasolina = parseFloat(document.getElementById('valorGasolina').value);
+            
+            if (isNaN(mediakml) || isNaN(distancia) || isNaN(valorGasolina)) {
+                alert('Por favor, preencha todos os campos corretamente.');
+                return;
+            }
+
+            const quantidadeGasolina = distancia / mediakml;
+
+            const custoTotal = quantidadeGasolina * valorGasolina;
+
+            alert(`O custo total da gasolina para a viagem é: R$ ${custoTotal.toFixed(2)}`);
+        });
+    </script>
+</body>
+</html>
